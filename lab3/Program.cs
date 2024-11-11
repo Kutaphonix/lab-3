@@ -10,7 +10,7 @@ namespace lab3
     {
         static Dictionary<string, string> dictionary = new Dictionary<string, string>()
         {
-            {"kot", "cat"}, {"pies", "dog"}, {"horse", "koń"}, {"mouse", "mysz"}, {"frog", "żaba"}, {"wolf", "wilk"}, {"monkey", "małpa"},
+            {"cat", "kot"}, {"dog", "pies"}, {"horse", "koń"}, {"mouse", "mysz"}, {"frog", "żaba"}, {"wolf", "wilk"}, {"monkey", "małpa"},
             {"fox", "lis"}, {"tiger", "tygrys"}, {"lion", "lew"}, {"elephant", "słoń"}, {"parrot", "papuga"}, {"pig", "świnia"}, {"sheep", "owca"},
             {"cow", "krowa"}, {"chicken", "kurczak"}
         };
@@ -59,7 +59,28 @@ namespace lab3
                 }
             }
         }
-        static void Translator() { }
+        static void Translator() {
+            Console.Write("Type word to translate: ");
+            string word = Console.ReadLine().ToLower();
+
+            if (dictionary.ContainsKey(word))
+            {
+                Console.WriteLine($"Translation {word} -> {dictionary[word]}");
+
+            }
+            else if (dictionary.ContainsValue(word))
+            {
+                string value = dictionary.FirstOrDefault(x => x.Value == word).Key;
+                Console.WriteLine($"Tłumaczenie {word} -> {value}");
+
+            }
+            else
+            {
+                Console.WriteLine("Unknown word");
+            }
+            Console.WriteLine("Press to continue.");
+            Console.ReadKey();
+        }
         static void SeeWords() { }
         static void AddWord() { }
         static void DeleteWord() { }
