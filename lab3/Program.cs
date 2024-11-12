@@ -18,7 +18,6 @@ namespace lab3
         {
             while (true)
             {
-                Console.Clear();
                 Console.WriteLine("English - Polish dictionary");
                 Console.WriteLine("[1] Translator");
                 Console.WriteLine("[2] See all words");
@@ -71,7 +70,7 @@ namespace lab3
             else if (dictionary.ContainsValue(word))
             {
                 string value = dictionary.FirstOrDefault(x => x.Value == word).Key;
-                Console.WriteLine($"Tłumaczenie {word} -> {value}");
+                Console.WriteLine($"Translation {word} -> {value}");
 
             }
             else
@@ -81,7 +80,33 @@ namespace lab3
             Console.WriteLine("Press to continue.");
             Console.ReadKey();
         }
-        static void SeeWords() { }
+        static void SeeWords() {
+            Console.WriteLine("Choose display option:");
+            Console.WriteLine("1. English-Polish");
+            Console.WriteLine("2. Polish-English");
+            string choice = Console.ReadLine();
+
+            if (choice == "1"){
+                var sorted = dictionary.OrderBy(x => x.Key);
+                foreach (var item in sorted)
+                {
+                    Console.WriteLine($"{item.Key} -> {item.Value}");
+                }
+            }
+            else if (choice == "2"){
+                var sorted = dictionary.OrderBy(x => x.Value);
+                foreach (var item in sorted)
+                {
+                    Console.WriteLine($"{item.Value} -> {item.Key}");
+                }
+            }
+            else {
+                Console.WriteLine("Wrong number");
+            }
+
+            Console.WriteLine("Press to continue");
+            Console.ReadKey();
+        }
         static void AddWord() { }
         static void DeleteWord() { }
         static void SeeHistory() { }
