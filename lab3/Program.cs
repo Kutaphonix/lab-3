@@ -107,7 +107,24 @@ namespace lab3
             Console.WriteLine("Press to continue");
             Console.ReadKey();
         }
-        static void AddWord() { }
+        static void AddWord() {
+            Console.Write("Type word in polish: ");
+            string polish = Console.ReadLine().ToLower();
+            Console.Write("Type english translation of this word: ");
+            string english = Console.ReadLine().ToLower();
+
+            if (!dictionary.ContainsKey(english) && !dictionary.ContainsValue(polish))
+            {
+                dictionary[english] = polish;
+                Console.WriteLine("New word added");
+            }
+            else
+            {
+                Console.WriteLine("This word already is in dictionary");
+            }
+            Console.WriteLine("Press to continue");
+            Console.ReadKey();
+        }
         static void DeleteWord() { }
         static void SeeHistory() { }
         static void Test() { }
