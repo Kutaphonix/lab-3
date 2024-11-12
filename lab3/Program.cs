@@ -125,7 +125,21 @@ namespace lab3
             Console.WriteLine("Press to continue");
             Console.ReadKey();
         }
-        static void DeleteWord() { }
+        static void DeleteWord() {
+            Console.Write("Type word you want to delete: ");
+            string word = Console.ReadLine().ToLower();
+
+            if (dictionary.Remove(word) || dictionary.Remove(dictionary.FirstOrDefault(x => x.Value == word).Key))
+            {
+                Console.WriteLine("Word has been deleted");
+            }
+            else
+            {
+                Console.WriteLine("No such word in dictionary");
+            }
+            Console.WriteLine("Press to continue");
+            Console.ReadKey();
+        }
         static void SeeHistory() { }
         static void Test() { }
 
