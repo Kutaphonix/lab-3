@@ -14,6 +14,7 @@ namespace lab3
             {"fox", "lis"}, {"tiger", "tygrys"}, {"lion", "lew"}, {"elephant", "słoń"}, {"parrot", "papuga"}, {"pig", "świnia"}, {"sheep", "owca"},
             {"cow", "krowa"}, {"chicken", "kurczak"}
         };
+        static List<string> history = new List<string>();
         static void Main(string[] args)
         {
             while (true)
@@ -65,12 +66,14 @@ namespace lab3
             if (dictionary.ContainsKey(word))
             {
                 Console.WriteLine($"Translation {word} -> {dictionary[word]}");
+                history.Add($"{word} -> {dictionary[word]}");
 
             }
             else if (dictionary.ContainsValue(word))
             {
                 string value = dictionary.FirstOrDefault(x => x.Value == word).Key;
                 Console.WriteLine($"Translation {word} -> {value}");
+                history.Add($"{word} -> {value}");
 
             }
             else
@@ -140,7 +143,15 @@ namespace lab3
             Console.WriteLine("Press to continue");
             Console.ReadKey();
         }
-        static void SeeHistory() { }
+        static void SeeHistory() {
+            Console.WriteLine("Translation history: ");
+            foreach(string x in history)
+            {
+                Console.WriteLine(x);
+            }
+            Console.WriteLine("Press to continue");
+            Console.ReadKey();
+        }
         static void Test() { }
 
     }
