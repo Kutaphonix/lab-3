@@ -19,6 +19,7 @@ namespace lab3
         {
             while (true)
             {
+                Console.WriteLine();
                 Console.WriteLine("English - Polish dictionary");
                 Console.WriteLine("[1] Translator");
                 Console.WriteLine("[2] See all words");
@@ -152,7 +153,43 @@ namespace lab3
             Console.WriteLine("Press to continue");
             Console.ReadKey();
         }
-        static void Test() { }
+        static void Test() {
+            HashSet<string> hashlist = new HashSet<string>();
+            Random random = new Random();
+            int points = 0;
+            Console.WriteLine("Choose test version:");
+            Console.WriteLine("1. English to Polish");
+            Console.WriteLine("2. Polish to English");
+            string version = Console.ReadLine();
+
+            List<string> testWords = version == "1" ? dictionary.Keys.ToList() : dictionary.Values.ToList();
+
+            while (hashlist.Count < testWords.Count-5)
+            {
+                string word = testWords[random.Next(testWords.Count)];
+                if (hashlist.Contains(word)) 
+                    continue;
+
+                Console.Write($"Type translation for word: \"{word}\": ");
+                string answer = Console.ReadLine().ToLower();
+
+                string correctAnswer = version == "1" ? dictionary[word] : dictionary.FirstOrDefault(x => x.Value == word).Key ;
+
+                if (answer == correctAnswer)
+                {
+                    Console.WriteLine("Correct!");
+                    points++;
+                }
+                else
+                {
+                    Console.WriteLine($"Wrong! Correct translation is: {correctAnswer}");
+                }
+                hashlist.Add(word);
+            }
+
+            Console.WriteLine($"Test is finished. Your score is {points}/{testWords.Count - 5}. Press to continue");
+            Console.ReadKey();
+        }
 
     }
 }
